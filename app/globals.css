@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-heading: "Bebas Neue", "Oswald", Impact, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-stone-600 antialiased;
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    @apply bg-ink text-white;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white hover:bg-stone-800;
+  }
+  .btn-outline {
+    @apply btn border border-stone-300 text-ink hover:border-ink hover:bg-stone-50;
+  }
+
+  .card {
+    @apply rounded-2xl border border-stone-200 bg-white p-6 shadow-card transition-shadow;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-500;
+  }
+  .field-input {
+    @apply w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-ink placeholder:text-stone-400 outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink;
+  }
+}
+
+/* Fondo sutil para el hero (claro) */
+.hero-soft {
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(193, 18, 31, 0.05), transparent 60%),
+    linear-gradient(180deg, #fafaf9 0%, #ffffff 100%);
+}
