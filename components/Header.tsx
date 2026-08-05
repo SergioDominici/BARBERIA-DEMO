@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FlatIcon, Menu, Close } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 
 const NAV = [
   { href: "/#servicios", label: "Servicios" },
@@ -27,10 +28,13 @@ export default function Header() {
   // Cierra el menú al cambiar de ruta
   useEffect(() => setOpen(false), [pathname]);
 
+  // Sobre el hero oscuro del inicio (sin scroll) el texto va en blanco
+  const sobreHero = pathname === "/" && !scrolled && !open;
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || open
           ? "border-b border-stone-200 bg-white/85 backdrop-blur"
           : "border-b border-transparent bg-transparent"
       }`}
@@ -38,7 +42,9 @@ export default function Header() {
       <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-heading text-2xl tracking-wide text-ink"
+          className={`flex items-center gap-2.5 font-heading text-2xl tracking-wide transition-colors ${
+            sobreHero ? "text-white" : "text-ink"
+          }`}
         >
           <FlatIcon
             src="/icons/barber-pole-color.png"
@@ -53,20 +59,28 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-stone-600 transition-colors hover:text-ink"
+              className={`text-sm font-medium transition-colors ${
+                sobreHero
+                  ? "text-white/80 hover:text-white"
+                  : "text-stone-600 hover:text-ink"
+              }`}
             >
               {item.label}
             </a>
           ))}
-          <Link href="/reservar" className="btn-primary !py-2.5">
-            Reservar
-          </Link>
+          <Button asChild size="sm" variant={sobreHero ? "light" : "default"}>
+            <Link href="/reservar">Reservar</Link>
+          </Button>
         </nav>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-stone-300 text-ink md:hidden"
+          className={`flex h-10 w-10 items-center justify-center rounded-lg border transition-colors md:hidden ${
+            sobreHero
+              ? "border-white/40 text-white"
+              : "border-stone-300 text-ink"
+          }`}
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
         >
@@ -90,9 +104,9 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <Link href="/reservar" className="btn-primary mt-2">
-              Reservar cita
-            </Link>
+            <Button asChild className="mt-2 w-full">
+              <Link href="/reservar">Reservar cita</Link>
+            </Button>
           </nav>
         </div>
       )}

@@ -10,6 +10,17 @@ import {
 } from "@/lib/bookings";
 import { SERVICIOS, formatCOP, type Service } from "@/lib/data";
 import { BarberPole, ServiceIcon } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const SERVICIOS_KEY = "barberia:servicios";
 
@@ -22,11 +33,18 @@ const ESTADOS: { valor: EstadoReserva | "todas"; etiqueta: string }[] = [
 ];
 
 const ESTADO_ESTILO: Record<EstadoReserva, string> = {
-  pendiente: "bg-amber-50 text-amber-700 border-amber-200",
-  confirmada: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  completada: "bg-sky-50 text-sky-700 border-sky-200",
-  cancelada: "bg-red-50 text-red-700 border-red-200",
+  pendiente: "border-amber-200 bg-amber-50 text-amber-700",
+  confirmada: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  completada: "border-sky-200 bg-sky-50 text-sky-700",
+  cancelada: "border-red-200 bg-red-50 text-red-700",
 };
+
+const ESTADO_OPCIONES: EstadoReserva[] = [
+  "pendiente",
+  "confirmada",
+  "completada",
+  "cancelada",
+];
 
 export default function AdminDashboard() {
   const [tab, setTab] = useState<"reservas" | "servicios">("reservas");
@@ -112,12 +130,12 @@ export default function AdminDashboard() {
 
 function StatCard({ etiqueta, valor }: { etiqueta: string; valor: string }) {
   return (
-    <div className="card">
+    <Card className="p-6">
       <p className="text-xs uppercase tracking-wider text-stone-400">
         {etiqueta}
       </p>
       <p className="mt-2 font-heading text-3xl text-ink">{valor}</p>
-    </div>
+    </Card>
   );
 }
 
@@ -138,17 +156,14 @@ function ReservasPanel({
     <div>
       <div className="mb-5 flex flex-wrap gap-2">
         {ESTADOS.map((e) => (
-          <button
+          <Button
             key={e.valor}
+            size="sm"
+            variant={filtro === e.valor ? "default" : "outline"}
             onClick={() => setFiltro(e.valor)}
-            className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors ${
-              filtro === e.valor
-                ? "border-ink bg-ink text-white"
-                : "border-stone-300 text-stone-600 hover:border-ink"
-            }`}
           >
             {e.etiqueta}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -163,16 +178,16 @@ function ReservasPanel({
           texto="No hay reservas con este estado."
         />
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-stone-200">
+        <Card className="overflow-x-auto">
           <table className="w-full min-w-[720px] text-left text-sm">
-            <thead className="bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
+            <thead className="border-b border-stone-200 bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
               <tr>
                 <th className="px-4 py-3 font-semibold">Cliente</th>
                 <th className="px-4 py-3 font-semibold">Servicio</th>
                 <th className="px-4 py-3 font-semibold">Barbero</th>
                 <th className="px-4 py-3 font-semibold">Fecha y hora</th>
                 <th className="px-4 py-3 font-semibold">Estado</th>
-                <th className="px-4 py-3 font-semibold text-right">Acciones</th>
+                <th className="px-4 py-3 text-right font-semibold">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-200">
@@ -194,35 +209,44 @@ function ReservasPanel({
                     <p className="text-xs text-stone-400">{r.hora}</p>
                   </td>
                   <td className="px-4 py-3">
-                    <select
+                    <Select
                       value={r.estado}
-                      onChange={(e) =>
-                        updateEstado(r.id, e.target.value as EstadoReserva)
+                      onValueChange={(v) =>
+                        updateEstado(r.id, v as EstadoReserva)
                       }
-                      className={`rounded-full border px-2.5 py-1 text-xs font-semibold capitalize outline-none ${ESTADO_ESTILO[r.estado]}`}
                     >
-                      <option value="pendiente">pendiente</option>
-                      <option value="confirmada">confirmada</option>
-                      <option value="completada">completada</option>
-                      <option value="cancelada">cancelada</option>
-                    </select>
+                      <SelectTrigger
+                        className={`h-8 w-[140px] rounded-full border px-3 text-xs font-semibold capitalize ${ESTADO_ESTILO[r.estado]}`}
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ESTADO_OPCIONES.map((op) => (
+                          <SelectItem key={op} value={op}>
+                            {op}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <button
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => {
                         if (confirm(`¿Eliminar la reserva de ${r.cliente}?`))
                           deleteReserva(r.id);
                       }}
-                      className="text-xs font-semibold text-stone-500 hover:text-accent"
+                      className="text-stone-500 hover:text-accent"
                     >
                       Eliminar
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
+        </Card>
       )}
     </div>
   );
@@ -273,14 +297,14 @@ function ServiciosPanel() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-      <div className="overflow-x-auto rounded-2xl border border-stone-200">
+      <Card className="overflow-x-auto">
         <table className="w-full min-w-[520px] text-left text-sm">
-          <thead className="bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
+          <thead className="border-b border-stone-200 bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
             <tr>
               <th className="px-4 py-3 font-semibold">Servicio</th>
               <th className="px-4 py-3 font-semibold">Duración</th>
               <th className="px-4 py-3 font-semibold">Precio</th>
-              <th className="px-4 py-3 font-semibold text-right">Acción</th>
+              <th className="px-4 py-3 text-right font-semibold">Acción</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-stone-200">
@@ -290,7 +314,7 @@ function ServiciosPanel() {
                   <span className="inline-flex items-center gap-2.5">
                     <ServiceIcon
                       name={s.icono}
-                      className="h-4 w-4 text-ink"
+                      className="h-4 w-4"
                       aria-hidden
                     />
                     <span className="font-medium text-ink">{s.nombre}</span>
@@ -301,82 +325,79 @@ function ServiciosPanel() {
                   {formatCOP(s.precio)}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() =>
                       persistir(servicios.filter((x) => x.id !== s.id))
                     }
-                    className="text-xs font-semibold text-stone-500 hover:text-accent"
+                    className="text-stone-500 hover:text-accent"
                   >
                     Eliminar
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </Card>
 
       <div className="space-y-4">
-        <form onSubmit={agregar} className="card space-y-4">
-          <h3 className="font-heading text-xl tracking-wide text-ink">
-            Nuevo servicio
-          </h3>
-          <div>
-            <label htmlFor="s-nombre" className="field-label">
-              Nombre
-            </label>
-            <input
-              id="s-nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              placeholder="Corte + mascarilla"
-              className="field-input"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-3">
+        <Card className="p-6">
+          <form onSubmit={agregar} className="space-y-4">
+            <h3 className="font-heading text-xl tracking-wide text-ink">
+              Nuevo servicio
+            </h3>
             <div>
-              <label htmlFor="s-precio" className="field-label">
-                Precio (COP)
-              </label>
-              <input
-                id="s-precio"
-                type="number"
-                min="0"
-                value={precio}
-                onChange={(e) => setPrecio(e.target.value)}
-                placeholder="40000"
-                className="field-input"
+              <Label htmlFor="s-nombre">Nombre</Label>
+              <Input
+                id="s-nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder="Corte + mascarilla"
               />
             </div>
-            <div>
-              <label htmlFor="s-duracion" className="field-label">
-                Min
-              </label>
-              <input
-                id="s-duracion"
-                type="number"
-                min="5"
-                value={duracion}
-                onChange={(e) => setDuracion(e.target.value)}
-                placeholder="30"
-                className="field-input"
-              />
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="s-precio">Precio (COP)</Label>
+                <Input
+                  id="s-precio"
+                  type="number"
+                  min="0"
+                  value={precio}
+                  onChange={(e) => setPrecio(e.target.value)}
+                  placeholder="40000"
+                />
+              </div>
+              <div>
+                <Label htmlFor="s-duracion">Min</Label>
+                <Input
+                  id="s-duracion"
+                  type="number"
+                  min="5"
+                  value={duracion}
+                  onChange={(e) => setDuracion(e.target.value)}
+                  placeholder="30"
+                />
+              </div>
             </div>
-          </div>
-          <button type="submit" className="btn-primary w-full">
-            Agregar servicio
-          </button>
-        </form>
+            <Button type="submit" className="w-full">
+              Agregar servicio
+            </Button>
+          </form>
+        </Card>
 
-        <button
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full"
           onClick={() => {
             window.localStorage.removeItem(SERVICIOS_KEY);
             setServicios(SERVICIOS);
           }}
-          className="btn-outline w-full !py-2.5 text-xs"
         >
           Restaurar servicios originales
-        </button>
+        </Button>
       </div>
     </div>
   );

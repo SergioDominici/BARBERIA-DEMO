@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdminDashboard from "@/components/AdminDashboard";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Panel de administración",
@@ -25,9 +26,9 @@ export default function AdminPage() {
               (demo, sin base de datos).
             </p>
           </div>
-          <Link href="/reservar" className="btn-outline !py-2.5">
-            + Crear reserva
-          </Link>
+          <Button asChild variant="outline">
+            <Link href="/reservar">+ Crear reserva</Link>
+          </Button>
         </div>
 
         <div className="mt-12">

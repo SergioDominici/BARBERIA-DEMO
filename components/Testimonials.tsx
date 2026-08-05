@@ -1,30 +1,14 @@
-import { Star } from "@/components/icons";
+import Link from "next/link";
+import { RESENAS } from "@/lib/data";
+import { Star, ArrowRight } from "@/components/icons";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
 
-const RESENAS = [
-  {
-    texto:
-      "El mejor corte que me han hecho en años. Andrés es un verdadero maestro con la máquina. Salí como nuevo.",
-    autor: "Daniel Restrepo",
-    detalle: "Cliente desde 2021",
-  },
-  {
-    texto:
-      "El afeitado a navaja con toalla caliente es toda una experiencia. Ambiente increíble y atención de primera.",
-    autor: "Mateo Gómez",
-    detalle: "Cliente frecuente",
-  },
-  {
-    texto:
-      "Reservé en línea en dos minutos y me atendieron puntual. La barba me quedó perfecta. 100% recomendado.",
-    autor: "Sebastián Cruz",
-    detalle: "Primera visita",
-  },
-];
-
-function Estrellas() {
+export function Estrellas({ n = 5 }: { n?: number }) {
   return (
-    <div className="flex gap-1 text-accent" aria-label="5 de 5 estrellas">
-      {Array.from({ length: 5 }).map((_, i) => (
+    <div className="flex gap-1 text-accent" aria-label={`${n} de 5 estrellas`}>
+      {Array.from({ length: n }).map((_, i) => (
         <Star key={i} className="h-4 w-4" aria-hidden />
       ))}
     </div>
@@ -32,34 +16,48 @@ function Estrellas() {
 }
 
 export default function Testimonials() {
+  const destacadas = RESENAS.slice(0, 4);
+
   return (
-    <section className="bg-stone-50 py-24">
-      <div className="container-page">
+    <section className="bg-stone-50 py-14 sm:py-20 lg:py-24">
+      <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
             <span className="h-px w-8 bg-accent" />
             Testimonios
           </p>
-          <h2 className="mt-4 font-display text-4xl font-bold text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-5xl">
             Lo que dicen nuestros clientes
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {RESENAS.map((r) => (
-            <figure key={r.autor} className="card flex flex-col">
-              <Estrellas />
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-stone-600">
+        {/* 2x2 en móvil, 4 en fila en escritorio */}
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-4">
+          {destacadas.map((r) => (
+            <Card key={r.id} className="flex flex-col p-4 sm:p-6">
+              <Estrellas n={r.estrellas} />
+              <blockquote className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-stone-600">
                 “{r.texto}”
               </blockquote>
-              <figcaption className="mt-6 border-t border-stone-200 pt-4">
-                <p className="font-semibold text-ink">{r.autor}</p>
+              <figcaption className="mt-4 border-t border-stone-200 pt-3">
+                <p className="text-sm font-semibold text-ink">{r.autor}</p>
                 <p className="text-xs text-stone-400">{r.detalle}</p>
               </figcaption>
-            </figure>
+            </Card>
           ))}
         </div>
-      </div>
+
+        {RESENAS.length > 4 && (
+          <div className="mt-8 flex justify-center">
+            <Button asChild variant="outline">
+              <Link href="/resenas">
+                Ver todas las reseñas
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </Button>
+          </div>
+        )}
+      </Reveal>
     </section>
   );
 }

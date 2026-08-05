@@ -1,41 +1,38 @@
 import Link from "next/link";
-import { BarberPole, ArrowRight, Phone } from "@/components/icons";
+import { ArrowRight, Phone } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
 
 export default function CtaBooking() {
   return (
-    <section className="py-24">
-      <div className="container-page">
-        <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center sm:px-16">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl"
-          />
-          <BarberPole className="mx-auto h-14 w-14 text-white" aria-hidden />
-          <h2 className="mx-auto mt-6 max-w-2xl font-display text-4xl font-bold text-white sm:text-5xl">
-            ¿Listo para tu próximo corte?
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-stone-300">
-            Reserva en línea, elige tu barbero y tu horario. Sin filas, sin
-            esperas. Te esperamos en Navaja &amp; Co.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/reservar"
-              className="btn inline-flex bg-white text-ink hover:bg-stone-200"
-            >
+    <section className="border-t border-stone-200 bg-stone-50 py-16 sm:py-24">
+      <Reveal className="container-page text-center">
+        <p className="mx-auto inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
+          <span className="h-px w-8 bg-accent" />
+          Reserva tu cita
+          <span className="h-px w-8 bg-accent" />
+        </p>
+        <h2 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold text-ink sm:text-5xl">
+          ¿Listo para tu próximo corte?
+        </h2>
+        <p className="mx-auto mt-4 max-w-lg text-stone-600">
+          Elige tu barbero y tu horario en un minuto. Sin filas, sin esperas.
+        </p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <Button asChild size="lg" className="w-full sm:w-auto">
+            <Link href="/reservar">
               Reservar ahora
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <a
-              href="tel:+5713001234567"
-              className="btn inline-flex border border-white/30 text-white hover:bg-white/10"
-            >
+          </Button>
+          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+            <a href="tel:+5713001234567">
               <Phone className="h-4 w-4" aria-hidden />
               300 123 4567
             </a>
-          </div>
+          </Button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

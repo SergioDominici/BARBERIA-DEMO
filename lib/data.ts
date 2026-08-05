@@ -17,6 +17,7 @@ export type Barber = {
   especialidad: string;
   experiencia: string;
   iniciales: string;
+  foto: string;
 };
 
 export const SERVICIOS: Service[] = [
@@ -83,6 +84,7 @@ export const BARBEROS: Barber[] = [
     especialidad: "Fades y cortes clásicos",
     experiencia: "12 años de experiencia",
     iniciales: "AR",
+    foto: "/barbers/andres.jpg",
   },
   {
     id: "camilo",
@@ -91,6 +93,7 @@ export const BARBEROS: Barber[] = [
     especialidad: "Barba y afeitado tradicional",
     experiencia: "8 años de experiencia",
     iniciales: "CV",
+    foto: "/barbers/camilo.jpg",
   },
   {
     id: "sofia",
@@ -99,6 +102,7 @@ export const BARBEROS: Barber[] = [
     especialidad: "Diseños y colorimetría",
     experiencia: "6 años de experiencia",
     iniciales: "SM",
+    foto: "/barbers/sofia.jpg",
   },
   {
     id: "julian",
@@ -107,6 +111,7 @@ export const BARBEROS: Barber[] = [
     especialidad: "Cortes modernos y texturizados",
     experiencia: "5 años de experiencia",
     iniciales: "JO",
+    foto: "/barbers/julian.jpg",
   },
 ];
 
@@ -128,6 +133,65 @@ export const FRANJAS_HORARIAS = [
   "17:00",
   "18:00",
   "19:00",
+];
+
+export type Review = {
+  id: string;
+  texto: string;
+  autor: string;
+  detalle: string;
+  estrellas: number;
+};
+
+export const RESENAS: Review[] = [
+  {
+    id: "r1",
+    texto:
+      "El mejor corte que me han hecho en años. Andrés es un verdadero maestro con la máquina. Salí como nuevo.",
+    autor: "Daniel Restrepo",
+    detalle: "Cliente desde 2021",
+    estrellas: 5,
+  },
+  {
+    id: "r2",
+    texto:
+      "El afeitado a navaja con toalla caliente es toda una experiencia. Ambiente increíble y atención de primera.",
+    autor: "Mateo Gómez",
+    detalle: "Cliente frecuente",
+    estrellas: 5,
+  },
+  {
+    id: "r3",
+    texto:
+      "Reservé en línea en dos minutos y me atendieron puntual. La barba me quedó perfecta. 100% recomendado.",
+    autor: "Sebastián Cruz",
+    detalle: "Primera visita",
+    estrellas: 5,
+  },
+  {
+    id: "r4",
+    texto:
+      "Llevo años buscando una barbería así de buena en Bogotá. El trato es cercano y el resultado impecable.",
+    autor: "Carlos Jiménez",
+    detalle: "Cliente desde 2022",
+    estrellas: 5,
+  },
+  {
+    id: "r5",
+    texto:
+      "Camilo me arregló la barba como nadie. Se nota que aman lo que hacen. Volveré sin duda.",
+    autor: "Andrés Motta",
+    detalle: "Cliente frecuente",
+    estrellas: 5,
+  },
+  {
+    id: "r6",
+    texto:
+      "Ambiente relajado, buen café y un corte moderno espectacular. La mejor experiencia de barbería que he tenido.",
+    autor: "Felipe Ríos",
+    detalle: "Primera visita",
+    estrellas: 5,
+  },
 ];
 
 export const formatCOP = (valor: number): string =>

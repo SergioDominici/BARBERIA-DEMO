@@ -227,7 +227,7 @@ export type ServiceIconKey =
 const SERVICIO_PNG: Record<ServiceIconKey, string> = {
   scissors: "/icons/scissors.png", // Corte clásico → tijeras
   clippers: "/icons/clipper.png", // Corte + barba → máquina
-  razor: "/icons/razor-straight.png", // Afeitado a navaja → navaja
+  razor: "/icons/razor-color.png", // Afeitado a navaja → maquinilla + brocha (color)
   brush: "/icons/beard.png", // Arreglo de barba → barba
   child: "/icons/chair-color.png", // Corte infantil → silla de barbero
   bolt: "/icons/comb-scissors.png", // Diseños y líneas → peine + tijeras

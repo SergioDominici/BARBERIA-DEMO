@@ -1,8 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { HORARIOS } from "@/lib/data";
 import { FlatIcon, Clock, Phone, Mail } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
+  const pathname = usePathname();
+  // En el flujo de reserva ocultamos el footer para no chocar con la barra fija
+  if (pathname === "/reservar") return null;
+
   return (
     <footer id="contacto" className="border-t border-stone-200 bg-stone-50">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
@@ -19,15 +27,11 @@ export default function Footer() {
             Barbería clásica y moderna en el corazón de Bogotá. Tradición,
             precisión y un buen café mientras te atendemos.
           </p>
-          <div className="mt-5 flex gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             {["Instagram", "Facebook", "TikTok"].map((red) => (
-              <a
-                key={red}
-                href="#"
-                className="rounded-full border border-stone-300 px-4 py-1.5 text-xs font-medium text-stone-600 transition-colors hover:border-ink hover:text-ink"
-              >
-                {red}
-              </a>
+              <Button key={red} asChild variant="outline" size="sm">
+                <a href="#">{red}</a>
+              </Button>
             ))}
           </div>
         </div>
