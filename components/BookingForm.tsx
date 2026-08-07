@@ -41,7 +41,11 @@ function proximosDias(n: number): DiaOpcion[] {
 
 const emailValido = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-export default function BookingForm() {
+export default function BookingForm({
+  embedded = false,
+}: {
+  embedded?: boolean;
+} = {}) {
   const params = useSearchParams();
   const servicioInicial = params.get("servicio") ?? SERVICIOS[0].id;
   const tieneServicioInicial = SERVICIOS.some(
@@ -77,8 +81,15 @@ export default function BookingForm() {
   const barbero = BARBEROS.find((b) => b.id === barberoId);
   const dias = useMemo(() => proximosDias(14), []);
 
-  const irArriba = () =>
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const irArriba = () => {
+    if (embedded) {
+      document
+        .getElementById("booking-scroll")
+        ?.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   const avanzar = (n: number) => {
     setPaso(n);
@@ -131,7 +142,7 @@ export default function BookingForm() {
   if (confirmada) return <Confirmacion reserva={confirmada} />;
 
   return (
-    <div className="mx-auto max-w-xl pb-28">
+    <div className={embedded ? "mx-auto max-w-xl" : "mx-auto max-w-xl pb-28"}>
       {/* Progreso */}
       <div className="mb-6">
         {paso > 0 ? (
@@ -387,9 +398,21 @@ export default function BookingForm() {
         </Paso>
       )}
 
-      {/* Barra fija: contexto + acción principal */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 backdrop-blur">
-        <div className="container-page mx-auto flex max-w-xl items-center gap-4 py-3">
+      {/* Barra de acción: fija en página, pegajosa dentro del popup */}
+      <div
+        className={
+          embedded
+            ? "sticky bottom-0 z-40 -mx-5 mt-6 border-t border-stone-200 bg-white/95 px-5 backdrop-blur"
+            : "fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 backdrop-blur"
+        }
+      >
+        <div
+          className={
+            embedded
+              ? "flex items-center gap-4 py-3"
+              : "container-page mx-auto flex max-w-xl items-center gap-4 py-3"
+          }
+        >
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs text-stone-500">{servicio.nombre}</p>
             <p className="font-heading text-2xl leading-none text-ink">

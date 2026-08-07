@@ -194,6 +194,19 @@ export const RESENAS: Review[] = [
   },
 ];
 
+export type TrabajoGaleria = { titulo: string; src: string; barbero: string };
+
+export const GALERIA: TrabajoGaleria[] = [
+  { titulo: "Barba a tijera", src: "/gallery/g1.jpg", barbero: "camilo" },
+  { titulo: "Afeitado a navaja", src: "/gallery/g2.jpg", barbero: "camilo" },
+  { titulo: "Degradado / Fade", src: "/gallery/g3.jpg", barbero: "andres" },
+  { titulo: "Perfilado y líneas", src: "/gallery/g4.jpg", barbero: "andres" },
+  { titulo: "Corte texturizado", src: "/gallery/g5.jpg", barbero: "sofia" },
+  { titulo: "Peinado y acabado", src: "/gallery/g6.jpg", barbero: "sofia" },
+  { titulo: "Barba definida", src: "/gallery/g7.jpg", barbero: "julian" },
+  { titulo: "Detalle a navaja", src: "/gallery/g8.jpg", barbero: "julian" },
+];
+
 export const formatCOP = (valor: number): string =>
   new Intl.NumberFormat("es-CO", {
     style: "currency",

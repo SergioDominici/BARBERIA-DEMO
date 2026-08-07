@@ -1,14 +1,11 @@
+import Link from "next/link";
 import Image from "next/image";
+import { GALERIA } from "@/lib/data";
 import { Reveal } from "@/components/Reveal";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "@/components/icons";
 
-const ITEMS = [
-  { titulo: "Recorte de barba", src: "/gallery/1.jpg" },
-  { titulo: "Afeitado a navaja", src: "/gallery/2.jpg" },
-  { titulo: "Degradado / Fade", src: "/gallery/3.jpg" },
-  { titulo: "Corte texturizado", src: "/gallery/4.jpg" },
-  { titulo: "Productos premium", src: "/gallery/5.jpg" },
-  { titulo: "Sillón clásico", src: "/gallery/6.jpg" },
-];
+const MUESTRA = GALERIA.slice(0, 6);
 
 export default function Gallery() {
   return (
@@ -20,17 +17,19 @@ export default function Gallery() {
             Galería
           </p>
           <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-5xl">
-            Nuestro trabajo habla
+            El trabajo de cada barbero
           </h2>
           <p className="mt-3 text-stone-600 sm:mt-4">
-            Una muestra de los estilos que creamos día a día.
+            Una muestra de lo que hacemos. Entra a la galería para ver el
+            portafolio completo de cada barbero.
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-3">
-          {ITEMS.map((item) => (
-            <div
-              key={item.titulo}
+          {MUESTRA.map((item) => (
+            <Link
+              key={item.src}
+              href="/galeria"
               className="group relative aspect-square overflow-hidden rounded-2xl border border-stone-200"
             >
               <Image
@@ -44,8 +43,17 @@ export default function Gallery() {
               <p className="absolute inset-x-0 bottom-0 p-3 text-left font-heading text-base tracking-wide text-white sm:p-4 sm:text-lg">
                 {item.titulo}
               </p>
-            </div>
+            </Link>
           ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Button asChild variant="outline">
+            <Link href="/galeria">
+              Ver galería completa
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
         </div>
       </Reveal>
     </section>
