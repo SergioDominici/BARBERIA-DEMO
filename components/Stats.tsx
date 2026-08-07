@@ -64,14 +64,14 @@ function Counter({ target, format }: { target: number; format: (n: number) => st
 
 export default function Stats() {
   return (
-    <section className="border-y border-stone-200 bg-stone-50">
+    <section className="border-y border-ink/15 bg-cream-dark">
       <div className="container-page grid grid-cols-4 gap-2 py-8 sm:gap-6 sm:py-12">
         {STATS.map((s) => (
           <div key={s.etiqueta} className="text-center">
             <p className="font-heading text-2xl text-ink sm:text-4xl lg:text-5xl">
               <Counter target={s.target} format={s.format} />
             </p>
-            <p className="mt-1 text-[10px] uppercase leading-tight tracking-wider text-stone-500 sm:text-sm">
+            <p className="mt-1 text-[10px] uppercase leading-tight tracking-wider text-ink/60 sm:text-sm">
               {s.etiqueta}
             </p>
           </div>

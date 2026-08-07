@@ -132,7 +132,7 @@ export default function AdminDashboard() {
       <RevenueChart />
 
       {/* Tabs */}
-      <div className="flex gap-1 overflow-x-auto border-b border-stone-200">
+      <div className="flex gap-1 overflow-x-auto border-b border-ink/15">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
             className={`-mb-px whitespace-nowrap border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${
               tab === t.id
                 ? "border-ink text-ink"
-                : "border-transparent text-stone-500 hover:text-ink"
+                : "border-transparent text-ink/60 hover:text-ink"
             }`}
           >
             {t.label}
@@ -173,10 +173,10 @@ function StatCard({
   destacado?: boolean;
 }) {
   return (
-    <Card className={`p-4 sm:p-5 ${destacado ? "bg-ink text-white" : ""}`}>
+    <Card className={`p-4 sm:p-5 ${destacado ? "bg-navy text-white" : ""}`}>
       <p
         className={`text-[10px] uppercase leading-tight tracking-wider sm:text-xs ${
-          destacado ? "text-white/60" : "text-stone-400"
+          destacado ? "text-white/60" : "text-ink/50"
         }`}
       >
         {etiqueta}
@@ -238,7 +238,7 @@ function ReservasPanel({
                     <p className="truncate font-semibold text-ink">
                       {r.cliente}
                     </p>
-                    <p className="text-xs text-stone-400">{r.telefono}</p>
+                    <p className="text-xs text-ink/50">{r.telefono}</p>
                   </div>
                   <EstadoSelect id={r.id} estado={r.estado} />
                 </div>
@@ -248,11 +248,11 @@ function ReservasPanel({
                   <Dato etiqueta="Fecha" valor={`${r.fecha} · ${r.hora}`} />
                   <Dato etiqueta="Precio" valor={formatCOP(r.precio)} />
                 </div>
-                <div className="mt-3 flex justify-end border-t border-stone-100 pt-2">
+                <div className="mt-3 flex justify-end border-t border-ink/10 pt-2">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-stone-500 hover:text-accent"
+                    className="text-ink/60 hover:text-accent"
                     onClick={() => {
                       if (confirm(`¿Eliminar la reserva de ${r.cliente}?`))
                         deleteReserva(r.id);
@@ -283,18 +283,18 @@ function ReservasPanel({
                   <TableRow key={r.id}>
                     <TableCell>
                       <p className="font-medium text-ink">{r.cliente}</p>
-                      <p className="text-xs text-stone-400">{r.telefono}</p>
+                      <p className="text-xs text-ink/50">{r.telefono}</p>
                     </TableCell>
                     <TableCell>
                       {r.servicioNombre}
-                      <p className="text-xs text-stone-400">
+                      <p className="text-xs text-ink/50">
                         {formatCOP(r.precio)}
                       </p>
                     </TableCell>
                     <TableCell>{r.barberoNombre}</TableCell>
                     <TableCell>
                       {r.fecha}
-                      <p className="text-xs text-stone-400">{r.hora}</p>
+                      <p className="text-xs text-ink/50">{r.hora}</p>
                     </TableCell>
                     <TableCell>
                       <EstadoSelect id={r.id} estado={r.estado} />
@@ -303,7 +303,7 @@ function ReservasPanel({
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-stone-500 hover:text-accent"
+                        className="text-ink/60 hover:text-accent"
                         onClick={() => {
                           if (confirm(`¿Eliminar la reserva de ${r.cliente}?`))
                             deleteReserva(r.id);
@@ -348,7 +348,7 @@ function EstadoSelect({ id, estado }: { id: string; estado: EstadoReserva }) {
 function Dato({ etiqueta, valor }: { etiqueta: string; valor: string }) {
   return (
     <div className="min-w-0">
-      <p className="text-[11px] uppercase tracking-wider text-stone-400">
+      <p className="text-[11px] uppercase tracking-wider text-ink/50">
         {etiqueta}
       </p>
       <p className="truncate text-ink">{valor}</p>
@@ -450,7 +450,7 @@ function ServiciosPanel() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-stone-500 hover:text-accent"
+                    className="text-ink/60 hover:text-accent"
                     onClick={() =>
                       persistir(servicios.filter((x) => x.id !== s.id))
                     }
@@ -591,11 +591,11 @@ function GaleriaPanel() {
             type="file"
             accept="image/*"
             onChange={onFile}
-            className="block w-full text-sm text-stone-600 file:mr-3 file:rounded-lg file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-stone-800"
+            className="block w-full text-sm text-ink/70 file:mr-3 file:rounded-lg file:border-0 file:bg-navy file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-navy-dark"
           />
         </div>
         {preview && (
-          <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-stone-200">
+          <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-ink/15">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={preview}
@@ -631,7 +631,7 @@ function GaleriaPanel() {
         <Button className="w-full" disabled={!preview} onClick={guardar}>
           Agregar a la galería
         </Button>
-        <p className="text-xs text-stone-400">
+        <p className="text-xs text-ink/50">
           Aparecerá en la galería pública (/galeria) filtrada por barbero.
         </p>
       </Card>
@@ -647,7 +647,7 @@ function GaleriaPanel() {
             {items.map((g) => (
               <div
                 key={g.id}
-                className="group relative aspect-square overflow-hidden rounded-lg border border-stone-200"
+                className="group relative aspect-square overflow-hidden rounded-lg border border-ink/15"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -655,7 +655,7 @@ function GaleriaPanel() {
                   alt={g.titulo}
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-2">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/80 to-transparent p-2">
                   <p className="truncate text-xs font-semibold text-white">
                     {g.titulo}
                   </p>
@@ -665,7 +665,7 @@ function GaleriaPanel() {
                 </div>
                 <button
                   onClick={() => eliminar(g.id)}
-                  className="absolute right-1.5 top-1.5 rounded-md bg-white/85 px-2 py-0.5 text-[11px] font-semibold text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
+                  className="absolute right-1.5 top-1.5 rounded-md bg-cream-light/85 px-2 py-0.5 text-[11px] font-semibold text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
                 >
                   Eliminar
                 </button>
@@ -740,9 +740,9 @@ function HorariosPanel() {
 
 function EmptyState({ titulo, texto }: { titulo: string; texto: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-stone-300 py-16 text-center">
+    <div className="rounded-2xl border border-dashed border-ink/25 py-16 text-center">
       <h3 className="font-heading text-xl tracking-wide text-ink">{titulo}</h3>
-      <p className="mx-auto mt-2 max-w-sm text-sm text-stone-500">{texto}</p>
+      <p className="mx-auto mt-2 max-w-sm text-sm text-ink/60">{texto}</p>
     </div>
   );
 }

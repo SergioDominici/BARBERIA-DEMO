@@ -75,8 +75,8 @@ export default function GalleryGrid() {
             }}
             className={`rounded-lg border px-4 py-1.5 text-sm font-semibold transition-colors ${
               filtro === t.id
-                ? "border-ink bg-ink text-white"
-                : "border-stone-300 text-stone-600 hover:border-ink"
+                ? "border-ink bg-navy text-white"
+                : "border-ink/25 text-ink/70 hover:border-ink"
             }`}
           >
             {t.label}
@@ -90,7 +90,7 @@ export default function GalleryGrid() {
             key={item.src}
             type="button"
             onClick={() => setOpen(i)}
-            className="group relative aspect-square overflow-hidden rounded-2xl border border-stone-200"
+            className="group relative aspect-square overflow-hidden rounded-2xl border border-ink/15"
           >
             <Image
               src={item.src}
@@ -100,7 +100,7 @@ export default function GalleryGrid() {
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-3 text-left sm:p-4">
               <p className="font-heading text-base tracking-wide text-white sm:text-lg">
                 {item.titulo}
@@ -109,7 +109,7 @@ export default function GalleryGrid() {
                 por {nombreCorto(item.barbero)}
               </p>
             </div>
-            <span className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+            <span className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-cream-light/20 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -129,7 +129,7 @@ export default function GalleryGrid() {
       {/* Lightbox */}
       {open !== null && visibles[open] && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-navy/90 p-4 backdrop-blur-sm"
           onClick={cerrar}
           onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
           onTouchEnd={(e) => {
@@ -143,7 +143,7 @@ export default function GalleryGrid() {
             type="button"
             onClick={cerrar}
             aria-label="Cerrar"
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/10 text-white transition-colors hover:bg-cream-light/20"
           >
             <Close className="h-5 w-5" aria-hidden />
           </button>
@@ -154,7 +154,7 @@ export default function GalleryGrid() {
               mover(-1);
             }}
             aria-label="Anterior"
-            className="absolute left-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:left-6"
+            className="absolute left-3 flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/10 text-white transition-colors hover:bg-cream-light/20 sm:left-6"
           >
             <ArrowRight className="h-5 w-5 rotate-180" aria-hidden />
           </button>
@@ -165,7 +165,7 @@ export default function GalleryGrid() {
               mover(1);
             }}
             aria-label="Siguiente"
-            className="absolute right-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:right-6"
+            className="absolute right-3 flex h-11 w-11 items-center justify-center rounded-full bg-cream-light/10 text-white transition-colors hover:bg-cream-light/20 sm:right-6"
           >
             <ArrowRight className="h-5 w-5" aria-hidden />
           </button>

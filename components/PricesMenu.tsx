@@ -27,7 +27,7 @@ export default function PricesMenu() {
           <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             Nuestros servicios
           </h2>
-          <p className="mt-3 text-stone-600 sm:mt-4">
+          <p className="mt-3 text-ink/70 sm:mt-4">
             Precios claros, sin sorpresas. Reserva el que quieras en segundos.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function PricesMenu() {
                 <TableRow key={s.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <span className="hidden h-9 w-9 flex-none items-center justify-center rounded-lg border border-stone-200 bg-stone-50 sm:inline-flex">
+                      <span className="hidden h-9 w-9 flex-none items-center justify-center rounded-lg border border-ink/15 bg-cream-dark sm:inline-flex">
                         <ServiceIcon
                           name={s.icono}
                           className="h-5 w-5"
@@ -61,13 +61,13 @@ export default function PricesMenu() {
                             <Badge variant="accent">Popular</Badge>
                           )}
                         </p>
-                        <p className="text-xs text-stone-400 sm:hidden">
+                        <p className="text-xs text-ink/50 sm:hidden">
                           {s.duracion} min
                         </p>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="hidden text-stone-600 sm:table-cell">
+                  <TableCell className="hidden text-ink/70 sm:table-cell">
                     {s.duracion} min
                   </TableCell>
                   <TableCell className="text-right font-heading text-base text-ink sm:text-lg">

@@ -15,7 +15,7 @@ export default function GaleriaPage() {
       <section className="container-page py-10 sm:py-14">
         <Link
           href="/#galeria"
-          className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-stone-500 transition-colors hover:text-ink"
+          className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink/60 transition-colors hover:text-ink"
         >
           <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
           Volver al inicio
@@ -29,7 +29,7 @@ export default function GaleriaPage() {
           <h1 className="mt-4 font-display text-4xl font-bold text-ink sm:text-5xl">
             El trabajo de cada barbero
           </h1>
-          <p className="mt-4 text-stone-600">
+          <p className="mt-4 text-ink/70">
             Elige un barbero para ver su portafolio. Toca cualquier foto para
             verla en grande.
           </p>

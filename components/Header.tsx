@@ -35,7 +35,7 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-stone-200 bg-white/85 backdrop-blur"
+          ? "border-b border-ink/15 bg-cream-light/85 backdrop-blur"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -51,7 +51,11 @@ export default function Header() {
             className="h-7 w-7"
             aria-hidden
           />
-          NAVAJA <span className="text-accent">&amp;</span> CO.
+          NAVAJA{" "}
+          <span className="font-script text-[1.5em] leading-none text-accent">
+            &amp;
+          </span>{" "}
+          CO.
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -62,7 +66,7 @@ export default function Header() {
               className={`text-sm font-medium transition-colors ${
                 sobreHero
                   ? "text-white/80 hover:text-white"
-                  : "text-stone-600 hover:text-ink"
+                  : "text-ink/70 hover:text-ink"
               }`}
             >
               {item.label}
@@ -79,7 +83,7 @@ export default function Header() {
           className={`flex h-10 w-10 items-center justify-center rounded-lg border transition-colors md:hidden ${
             sobreHero
               ? "border-white/40 text-white"
-              : "border-stone-300 text-ink"
+              : "border-ink/25 text-ink"
           }`}
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
@@ -93,13 +97,13 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-stone-200 bg-white md:hidden">
+        <div className="border-t border-ink/15 bg-cream-light md:hidden">
           <nav className="container-page flex flex-col gap-1 py-4">
             {NAV.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-3 text-sm font-medium text-ink hover:bg-stone-50"
+                className="rounded-lg px-3 py-3 text-sm font-medium text-ink hover:bg-cream-dark"
               >
                 {item.label}
               </a>

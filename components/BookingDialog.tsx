@@ -26,7 +26,7 @@ export default function BookingDialog({
           <DialogDescription className="sr-only">
             Elige servicio, barbero, fecha y hora sin salir de la página.
           </DialogDescription>
-          <Suspense fallback={<p className="text-stone-500">Cargando…</p>}>
+          <Suspense fallback={<p className="text-ink/60">Cargando…</p>}>
             <BookingForm embedded servicioId={servicioId} />
           </Suspense>
         </div>

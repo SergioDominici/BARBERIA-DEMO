@@ -8,14 +8,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-ink text-white shadow-sm hover:bg-stone-800",
-        secondary: "bg-white text-ink shadow-sm hover:bg-stone-100",
+        default: "bg-navy text-white shadow-sm hover:bg-navy-dark",
+        secondary: "bg-cream-light text-ink shadow-sm hover:bg-cream-dark",
         outline:
-          "border border-stone-300 text-ink hover:border-ink hover:bg-stone-50",
-        ghost: "text-ink hover:bg-stone-100",
+          "border border-ink/25 text-ink hover:border-ink hover:bg-cream-dark",
+        ghost: "text-ink hover:bg-cream-dark",
         accent: "bg-accent text-white shadow-sm hover:bg-accent-dark",
-        light: "bg-white text-ink shadow-sm hover:bg-stone-200",
-        outlineLight: "border border-white/40 text-white hover:bg-white/10",
+        light: "bg-cream-light text-ink shadow-sm hover:bg-cream-dark",
+        outlineLight: "border border-white/40 text-white hover:bg-cream-light/10",
       },
       size: {
         default: "h-11 px-6 py-3",

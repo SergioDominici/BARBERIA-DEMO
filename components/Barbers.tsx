@@ -7,7 +7,7 @@ import { ArrowRight } from "@/components/icons";
 
 export default function Barbers() {
   return (
-    <section id="barberos" className="scroll-mt-20 bg-stone-50 py-10 sm:py-14 lg:py-20">
+    <section id="barberos" className="scroll-mt-20 bg-cream-dark py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
@@ -17,7 +17,7 @@ export default function Barbers() {
           <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             Manos expertas
           </h2>
-          <p className="mt-3 text-stone-600 sm:mt-4">
+          <p className="mt-3 text-ink/70 sm:mt-4">
             Un equipo apasionado por su oficio, listo para darte el mejor corte de
             tu vida.
           </p>
@@ -39,8 +39,8 @@ export default function Barbers() {
                     sizes="(max-width: 640px) 50vw, 25vw"
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
-                  <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-ink/80 py-2 text-xs font-semibold uppercase tracking-wider text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                  <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-navy/80 py-2 text-xs font-semibold uppercase tracking-wider text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     Reservar
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                   </span>
@@ -51,10 +51,10 @@ export default function Barbers() {
                 <p className="text-xs font-medium italic text-accent sm:text-sm">
                   “{b.alias}”
                 </p>
-                <p className="mt-2 px-3 text-xs text-stone-600 sm:mt-3 sm:text-sm">
+                <p className="mt-2 px-3 text-xs text-ink/70 sm:mt-3 sm:text-sm">
                   {b.especialidad}
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-wider text-stone-400 sm:text-xs">
+                <p className="mt-1 text-[10px] uppercase tracking-wider text-ink/50 sm:text-xs">
                   {b.experiencia}
                 </p>
               </Card>

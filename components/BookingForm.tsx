@@ -176,12 +176,12 @@ export default function BookingForm({
             <span
               key={i}
               className={`h-1.5 flex-1 rounded-full transition-colors ${
-                i <= paso ? "bg-ink" : "bg-stone-200"
+                i <= paso ? "bg-navy" : "bg-cream-dark"
               }`}
             />
           ))}
         </div>
-        <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-stone-400">
+        <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-ink/50">
           Paso {paso + 1} de {PASOS.length} · {PASOS[paso]}
         </p>
       </div>
@@ -198,16 +198,16 @@ export default function BookingForm({
                 className={`flex flex-col rounded-2xl border p-4 text-left transition-colors ${
                   servicioId === s.id && paso === 0
                     ? "border-ink ring-1 ring-ink"
-                    : "border-stone-200 hover:border-stone-400"
+                    : "border-ink/15 hover:border-ink/40"
                 }`}
               >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-stone-200 bg-stone-50">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink/15 bg-cream-dark">
                   <ServiceIcon name={s.icono} className="h-7 w-7" aria-hidden />
                 </span>
                 <span className="mt-3 font-heading text-lg leading-tight tracking-wide text-ink">
                   {s.nombre}
                 </span>
-                <span className="mt-1 text-xs text-stone-500">
+                <span className="mt-1 text-xs text-ink/60">
                   {s.duracion} min
                 </span>
                 <span className="mt-2 font-heading text-lg text-ink">
@@ -248,7 +248,7 @@ export default function BookingForm({
       {/* Paso 2: Fecha y hora */}
       {paso === 2 && (
         <Paso titulo="¿Cuándo te viene bien?">
-          <p className="mb-2 block text-xs font-semibold uppercase tracking-wider text-stone-500">
+          <p className="mb-2 block text-xs font-semibold uppercase tracking-wider text-ink/60">
             Elige el día
           </p>
           <div className="grid grid-cols-4 gap-2 sm:grid-cols-7">
@@ -264,13 +264,13 @@ export default function BookingForm({
                   }}
                   className={`flex flex-col items-center rounded-lg border px-2 py-2.5 transition-colors ${
                     activo
-                      ? "border-ink bg-ink text-white"
-                      : "border-stone-300 text-ink hover:border-ink"
+                      ? "border-ink bg-navy text-white"
+                      : "border-ink/25 text-ink hover:border-ink"
                   }`}
                 >
                   <span
                     className={`text-[11px] font-semibold uppercase ${
-                      activo ? "text-white/70" : "text-stone-400"
+                      activo ? "text-white/70" : "text-ink/50"
                     }`}
                   >
                     {d.dow}
@@ -280,7 +280,7 @@ export default function BookingForm({
                   </span>
                   <span
                     className={`text-[10px] uppercase ${
-                      activo ? "text-white/70" : "text-stone-400"
+                      activo ? "text-white/70" : "text-ink/50"
                     }`}
                   >
                     {d.month}
@@ -292,7 +292,7 @@ export default function BookingForm({
 
           {fecha && (
             <div className="mt-6">
-              <p className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-500">
+              <p className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/60">
                 Elige una hora
               </p>
               <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4">
@@ -308,8 +308,8 @@ export default function BookingForm({
                       onClick={() => elegirHora(h)}
                       className={`rounded-lg border py-3 text-sm font-semibold transition-colors ${
                         ocupado
-                          ? "cursor-not-allowed border-stone-200 text-stone-300 line-through"
-                          : "border-stone-300 text-ink hover:border-ink active:bg-ink active:text-white"
+                          ? "cursor-not-allowed border-ink/15 text-ink/40 line-through"
+                          : "border-ink/25 text-ink hover:border-ink active:bg-navy active:text-white"
                       }`}
                     >
                       {h}
@@ -326,15 +326,15 @@ export default function BookingForm({
       {paso === 3 && (
         <Paso titulo="Últimos datos y listo">
           {/* Resumen compacto */}
-          <div className="mb-6 flex items-center gap-3 rounded-2xl bg-stone-50 p-4">
-            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-stone-200 bg-white">
+          <div className="mb-6 flex items-center gap-3 rounded-2xl bg-cream-dark p-4">
+            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-ink/15 bg-cream-light">
               <ServiceIcon name={servicio.icono} className="h-6 w-6" aria-hidden />
             </span>
             <div className="min-w-0 flex-1 text-sm">
               <p className="truncate font-semibold text-ink">
                 {servicio.nombre}
               </p>
-              <p className="truncate text-stone-500">
+              <p className="truncate text-ink/60">
                 {formatoFecha(fecha)} · {hora} ·{" "}
                 {barbero ? barbero.nombre : "Cualquiera"}
               </p>
@@ -409,8 +409,8 @@ export default function BookingForm({
       <div
         className={
           embedded
-            ? "sticky bottom-0 z-40 -mx-5 mt-6 border-t border-stone-200 bg-white/95 px-5 backdrop-blur"
-            : "fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 backdrop-blur"
+            ? "sticky bottom-0 z-40 -mx-5 mt-6 border-t border-ink/15 bg-cream-light/95 px-5 backdrop-blur"
+            : "fixed inset-x-0 bottom-0 z-40 border-t border-ink/15 bg-cream-light/95 backdrop-blur"
         }
       >
         <div
@@ -421,13 +421,13 @@ export default function BookingForm({
           }
         >
           <div className="min-w-0 flex-1">
-            <p className="truncate text-xs text-stone-500">{servicio.nombre}</p>
+            <p className="truncate text-xs text-ink/60">{servicio.nombre}</p>
             <p className="font-heading text-2xl leading-none text-ink">
               {formatCOP(servicio.precio)}
             </p>
           </div>
           {paso < 3 ? (
-            <span className="text-sm font-medium text-stone-400">
+            <span className="text-sm font-medium text-ink/50">
               {paso === 0
                 ? "Toca un servicio"
                 : paso === 1
@@ -485,7 +485,7 @@ function BarberRow({
       type="button"
       onClick={onClick}
       className={`flex items-center gap-3 rounded-2xl border p-3 text-left transition-colors ${
-        activo ? "border-ink ring-1 ring-ink" : "border-stone-200 hover:border-stone-400"
+        activo ? "border-ink ring-1 ring-ink" : "border-ink/15 hover:border-ink/40"
       }`}
     >
       {foto ? (
@@ -499,15 +499,15 @@ function BarberRow({
           />
         </span>
       ) : (
-        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-ink font-heading text-lg text-white">
+        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-navy font-heading text-lg text-white">
           {avatar}
         </span>
       )}
       <span className="min-w-0 flex-1">
         <span className="block truncate font-semibold text-ink">{nombre}</span>
-        <span className="block truncate text-sm text-stone-500">{detalle}</span>
+        <span className="block truncate text-sm text-ink/60">{detalle}</span>
       </span>
-      <ArrowRight className="h-5 w-5 flex-none text-stone-300" aria-hidden />
+      <ArrowRight className="h-5 w-5 flex-none text-ink/40" aria-hidden />
     </button>
   );
 }
@@ -577,19 +577,19 @@ function whatsappConfirmar(reserva: Reserva): string {
 function Confirmacion({ reserva }: { reserva: Reserva }) {
   return (
     <div className="mx-auto max-w-lg py-6 text-center">
-      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-ink text-white">
+      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-navy text-white">
         <Check className="h-9 w-9" aria-hidden />
       </div>
       <h2 className="mt-6 font-display text-3xl font-bold text-ink sm:text-4xl">
         ¡Reserva confirmada!
       </h2>
-      <p className="mt-3 text-stone-600">
+      <p className="mt-3 text-ink/70">
         Te enviamos los detalles a{" "}
         <span className="text-ink">{reserva.email}</span>. Te esperamos.
       </p>
 
       <Card className="mt-8 p-6 text-left">
-        <p className="text-xs uppercase tracking-wider text-stone-400">
+        <p className="text-xs uppercase tracking-wider text-ink/50">
           Código de reserva
         </p>
         <p className="font-heading text-2xl tracking-widest text-accent">
@@ -640,7 +640,7 @@ function Confirmacion({ reserva }: { reserva: Reserva }) {
 function Fila({ etiqueta, valor }: { etiqueta: string; valor: string }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <dt className="text-stone-500">{etiqueta}</dt>
+      <dt className="text-ink/60">{etiqueta}</dt>
       <dd className="text-right font-medium text-ink">{valor}</dd>
     </div>
   );

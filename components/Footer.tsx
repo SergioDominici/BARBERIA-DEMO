@@ -12,7 +12,7 @@ export default function Footer() {
   if (pathname === "/reservar") return null;
 
   return (
-    <footer className="border-t border-stone-200 bg-white">
+    <footer className="border-t border-ink/15 bg-cream-light">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5 font-heading text-2xl tracking-wide text-ink">
@@ -21,9 +21,13 @@ export default function Footer() {
               className="h-7 w-7"
               aria-hidden
             />
-            NAVAJA <span className="text-accent">&amp;</span> CO.
+            NAVAJA{" "}
+            <span className="font-script text-[1.5em] leading-none text-accent">
+              &amp;
+            </span>{" "}
+            CO.
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone-500">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/60">
             Barbería clásica y moderna en el corazón de Bogotá. Tradición,
             precisión y un buen café mientras te atendemos.
           </p>
@@ -41,7 +45,7 @@ export default function Footer() {
             <Clock className="h-4 w-4 text-accent" aria-hidden />
             Horarios
           </h3>
-          <ul className="mt-4 space-y-2 text-sm text-stone-500">
+          <ul className="mt-4 space-y-2 text-sm text-ink/60">
             {HORARIOS.map((h) => (
               <li key={h.dia} className="flex flex-col">
                 <span className="text-ink">{h.dia}</span>
@@ -56,7 +60,7 @@ export default function Footer() {
             <FlatIcon src="/icons/location-pole.png" className="h-5 w-5" aria-hidden />
             Visítanos
           </h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-stone-500">
+          <ul className="mt-4 space-y-2.5 text-sm text-ink/60">
             <li>Calle 85 #12-34, Chapinero, Bogotá</li>
             <li>
               <a
@@ -80,8 +84,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-stone-200">
-        <div className="container-page flex flex-col items-center justify-between gap-3 py-5 text-xs text-stone-400 sm:flex-row">
+      <div className="border-t border-ink/15">
+        <div className="container-page flex flex-col items-center justify-between gap-3 py-5 text-xs text-ink/50 sm:flex-row">
           <p>
             © {new Date().getFullYear()} Navaja &amp; Co. — Sitio demo. Iconos por{" "}
             <a

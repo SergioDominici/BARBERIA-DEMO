@@ -19,7 +19,7 @@ const COMO_LLEGAR = `https://www.google.com/maps/dir/?api=1&destination=${COORDS
 
 export default function ContactMap() {
   return (
-    <section id="contacto" className="scroll-mt-20 bg-white py-10 sm:py-14 lg:py-20">
+    <section id="contacto" className="scroll-mt-20 bg-cream-light py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
@@ -29,7 +29,7 @@ export default function ContactMap() {
           <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             Cómo llegar
           </h2>
-          <p className="mt-3 text-stone-600 sm:mt-4">
+          <p className="mt-3 text-ink/70 sm:mt-4">
             Estamos en el corazón de Chapinero. Te esperamos.
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function ContactMap() {
               <MapPin className="mt-0.5 h-5 w-5 flex-none text-accent" aria-hidden />
               <div>
                 <p className="font-semibold text-ink">Dirección</p>
-                <p className="text-sm text-stone-600">{DIRECCION}</p>
+                <p className="text-sm text-ink/70">{DIRECCION}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -50,7 +50,7 @@ export default function ContactMap() {
                 <p className="font-semibold text-ink">Teléfono</p>
                 <a
                   href="tel:+5713001234567"
-                  className="text-sm text-stone-600 hover:text-ink"
+                  className="text-sm text-ink/70 hover:text-ink"
                 >
                   +57 300 123 4567
                 </a>
@@ -79,12 +79,12 @@ export default function ContactMap() {
                         <TableCell className="text-right">
                           <span
                             className={`inline-flex items-center gap-1.5 text-xs font-semibold ${
-                              cerrado ? "text-stone-400" : "text-emerald-600"
+                              cerrado ? "text-ink/50" : "text-emerald-600"
                             }`}
                           >
                             <span
                               className={`h-2 w-2 rounded-full ${
-                                cerrado ? "bg-stone-300" : "bg-emerald-500"
+                                cerrado ? "bg-ink/30" : "bg-emerald-500"
                               }`}
                             />
                             {cerrado ? "Cerrado" : "Abierto"}
@@ -106,7 +106,7 @@ export default function ContactMap() {
           </div>
 
           {/* Mapa */}
-          <div className="overflow-hidden rounded-2xl border border-stone-200 shadow-card">
+          <div className="overflow-hidden rounded-2xl border border-ink/15 shadow-card">
             <iframe
               src={MAPA_EMBED}
               title="Ubicación de Navaja & Co."

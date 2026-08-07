@@ -9,35 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Marca: negro cálido para textos y botones primarios
-        ink: {
-          DEFAULT: "#141414",
-          soft: "#3f3f3f",
+        // Retro / americana
+        ink: { DEFAULT: "#241c14", soft: "#4a3d2e" }, // marrón-negro cálido (texto)
+        cream: {
+          DEFAULT: "#f3e8cf", // fondo principal
+          light: "#fbf5e6", // tarjetas
+          dark: "#e9dab8", // secciones alternas
         },
-        // Acento discreto (rojo clásico de barbería), usado con moderación
-        accent: {
-          DEFAULT: "#c1121f",
-          dark: "#8f0d16",
-        },
+        navy: { DEFAULT: "#16273f", dark: "#0e1b2c" }, // azul marino
+        accent: { DEFAULT: "#b3202e", dark: "#8c1823" }, // rojo barbería
+        mustard: { DEFAULT: "#d9a441", dark: "#b9862c" }, // dorado mostaza
       },
       fontFamily: {
-        display: ["var(--font-display)", "ui-serif", "Georgia", "serif"],
-        heading: ["var(--font-heading)", "Impact", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"], // Alfa Slab One
+        heading: ["var(--font-heading)", "Impact", "sans-serif"], // Oswald
+        script: ["var(--font-script)", "cursive"], // Yellowtail
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 1px 3px rgba(20,20,20,0.06), 0 1px 2px rgba(20,20,20,0.04)",
-        lift: "0 12px 32px -12px rgba(20,20,20,0.18)",
+        card: "0 2px 0 0 rgba(36,28,20,0.08), 0 1px 3px rgba(36,28,20,0.06)",
+        lift: "0 14px 32px -14px rgba(22,39,63,0.28)",
       },
       keyframes: {
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "page-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
+        "page-in": { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
@@ -57,6 +55,7 @@ const config: Config = {
         marquee: "marquee 28s linear infinite",
         "accordion-down": "accordion-down 0.25s ease-out",
         "accordion-up": "accordion-up 0.25s ease-out",
+        "spin-slow": "spin 22s linear infinite",
       },
     },
   },

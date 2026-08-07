@@ -13,7 +13,7 @@ export default function ReservarPage() {
     <div className="pt-24">
       <section className="container-page py-6 sm:py-10">
         <Suspense
-          fallback={<p className="text-stone-500">Cargando…</p>}
+          fallback={<p className="text-ink/60">Cargando…</p>}
         >
           <BookingForm />
         </Suspense>

@@ -50,16 +50,16 @@ export default function ImageBand() {
           className="object-cover object-center"
         />
       </div>
-      <div aria-hidden className="absolute inset-0 bg-ink/65" />
+      <div aria-hidden className="absolute inset-0 bg-ink/55" />
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
         <div>
-          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+          <p className="inline-flex items-center gap-2 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-cream-light/70">
             <span className="h-px w-8 bg-accent" />
             Tradición desde 2009
             <span className="h-px w-8 bg-accent" />
           </p>
-          <p className="mt-3 font-display text-2xl italic text-white sm:text-4xl">
-            Cada corte, una obra de arte.
+          <p className="mt-2 font-script text-4xl text-cream-light sm:text-6xl">
+            Cada corte, una obra de arte
           </p>
         </div>
       </div>

@@ -12,7 +12,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b border-stone-200", className)}
+    className={cn("border-b border-ink/15", className)}
     {...props}
   />
 ));
@@ -38,7 +38,7 @@ const AccordionTrigger = React.forwardRef<
         stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
-        className="h-5 w-5 flex-none text-stone-400 transition-transform duration-300"
+        className="h-5 w-5 flex-none text-ink/50 transition-transform duration-300"
         aria-hidden
       >
         <path d="M12 5v14M5 12h14" />
@@ -54,7 +54,7 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden text-sm text-stone-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    className="overflow-hidden text-sm text-ink/70 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
     <div className={cn("pb-4 pr-8 leading-relaxed", className)}>{children}</div>

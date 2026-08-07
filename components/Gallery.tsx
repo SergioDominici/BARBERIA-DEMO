@@ -19,7 +19,7 @@ export default function Gallery() {
           <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             El trabajo de cada barbero
           </h2>
-          <p className="mt-3 text-stone-600 sm:mt-4">
+          <p className="mt-3 text-ink/70 sm:mt-4">
             Una muestra de lo que hacemos. Entra a la galería para ver el
             portafolio completo de cada barbero.
           </p>
@@ -30,7 +30,7 @@ export default function Gallery() {
             <Link
               key={item.src}
               href="/galeria"
-              className="group relative aspect-square overflow-hidden rounded-2xl border border-stone-200 transition-transform duration-200 active:scale-[0.98]"
+              className="group relative aspect-square overflow-hidden rounded-2xl border border-ink/15 transition-transform duration-200 active:scale-[0.98]"
             >
               <Image
                 src={item.src}
@@ -39,7 +39,7 @@ export default function Gallery() {
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/10 to-transparent" />
               <p className="absolute inset-x-0 bottom-0 p-3 text-left font-heading text-base tracking-wide text-white sm:p-4 sm:text-lg">
                 {item.titulo}
               </p>

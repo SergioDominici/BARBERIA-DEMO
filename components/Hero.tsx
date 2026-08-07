@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Star } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import Seal from "@/components/Seal";
 
 export default function Hero() {
   return (
@@ -25,72 +26,62 @@ export default function Hero() {
         className="hidden object-cover object-center md:block"
       />
 
-      {/* Capas para legibilidad del texto sobre la foto */}
-      <div aria-hidden className="absolute inset-0 bg-ink/45" />
+      {/* Velo cálido (no azul) para legibilidad, dejando ver la foto */}
+      <div aria-hidden className="absolute inset-0 bg-ink/40" />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/45"
+        className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-ink/25"
       />
 
-      {/* Contenido: centrado y repartido (arriba · centro · abajo) */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-between px-6 pb-14 pt-28 text-center sm:pb-20 sm:pt-32">
-        {/* Arriba */}
-        <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+      {/* Sello girando */}
+      <Seal className="absolute right-4 top-20 h-20 w-20 animate-spin-slow text-cream-light/80 sm:right-8 sm:top-28 sm:h-32 sm:w-32" />
+
+      {/* Contenido */}
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <p className="inline-flex items-center gap-3 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-cream-light/70 sm:text-sm">
           <span className="h-px w-6 bg-accent" />
           Barbería clásica · Bogotá
           <span className="h-px w-6 bg-accent" />
         </p>
 
-        {/* Centro */}
-        <div className="flex flex-col items-center">
-          <h1 className="mx-auto max-w-2xl text-balance font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-            El arte de un{" "}
-            <span className="italic text-accent">buen corte</span>
-          </h1>
-          <div className="mt-6 flex items-center gap-2.5">
-            <div className="flex gap-1 text-accent" aria-hidden>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4" />
-              ))}
-            </div>
-            <span className="text-sm font-medium text-white/80">
-              4.9 · +1.200 clientes felices
-            </span>
+        <h1 className="mt-5 font-display text-5xl font-bold uppercase leading-[0.92] text-cream-light sm:text-7xl lg:text-8xl">
+          El arte de un
+          <span className="mt-2 block font-script text-5xl normal-case text-accent sm:text-7xl lg:text-8xl">
+            buen corte
+          </span>
+        </h1>
+
+        <div className="mt-7 flex items-center gap-2.5">
+          <div className="flex gap-1 text-mustard" aria-hidden>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star key={i} className="h-4 w-4" />
+            ))}
           </div>
+          <span className="font-heading text-sm uppercase tracking-wider text-cream-light/80">
+            4.9 · +1.200 clientes
+          </span>
         </div>
 
-        {/* Abajo */}
-        <div className="flex flex-col items-center gap-7">
-          <div className="flex w-full max-w-xs flex-col items-center gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
-            <Button
-              asChild
-              variant="light"
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              <Link href="/reservar">
-                Reservar tu cita
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outlineLight"
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              <a href="#servicios">Ver servicios</a>
-            </Button>
-          </div>
-          <a
-            href="#servicios"
-            aria-label="Desliza para ver más"
-            className="animate-bounce text-white/50 transition-colors hover:text-white"
+        <div className="mt-9 flex w-full max-w-xs flex-col items-center gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+          <Button asChild variant="accent" size="lg" className="w-full sm:w-auto">
+            <Link href="/reservar">
+              Reservar tu cita
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant="outlineLight"
+            size="lg"
+            className="w-full sm:w-auto"
           >
-            <ArrowRight className="h-6 w-6 rotate-90" aria-hidden />
-          </a>
+            <a href="#servicios">Ver servicios</a>
+          </Button>
         </div>
       </div>
+
+      {/* Franja de poste de barbero */}
+      <div aria-hidden className="barber-stripes absolute inset-x-0 bottom-0 h-3" />
     </section>
   );
 }

@@ -60,19 +60,19 @@ export default function RevenueChart() {
           <h3 className="font-heading text-lg tracking-wide text-ink sm:text-xl">
             Reservas por día
           </h3>
-          <p className="text-xs text-stone-500 sm:text-sm">
+          <p className="text-xs text-ink/60 sm:text-sm">
             {total} reservas en los últimos {periodo} días
           </p>
         </div>
-        <div className="flex gap-1 rounded-lg border border-stone-200 p-0.5">
+        <div className="flex gap-1 rounded-lg border border-ink/15 p-0.5">
           {PERIODOS.map((p) => (
             <button
               key={p.id}
               onClick={() => setPeriodo(p.id)}
               className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
                 periodo === p.id
-                  ? "bg-ink text-white"
-                  : "text-stone-500 hover:text-ink"
+                  ? "bg-navy text-white"
+                  : "text-ink/60 hover:text-ink"
               }`}
             >
               {p.label}
@@ -82,9 +82,9 @@ export default function RevenueChart() {
       </div>
 
       {/* Leyenda */}
-      <div className="mt-3 flex gap-4 text-xs text-stone-500">
+      <div className="mt-3 flex gap-4 text-xs text-ink/60">
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-ink" /> Cortes
+          <span className="h-2 w-2 rounded-full bg-navy" /> Cortes
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-accent" /> Barba y afeitado
@@ -96,38 +96,38 @@ export default function RevenueChart() {
           <AreaChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>
             <defs>
               <linearGradient id="fillCortes" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#141414" stopOpacity={0.45} />
-                <stop offset="95%" stopColor="#141414" stopOpacity={0.04} />
+                <stop offset="5%" stopColor="#16273f" stopOpacity={0.45} />
+                <stop offset="95%" stopColor="#16273f" stopOpacity={0.04} />
               </linearGradient>
               <linearGradient id="fillBarbas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#c1121f" stopOpacity={0.5} />
-                <stop offset="95%" stopColor="#c1121f" stopOpacity={0.05} />
+                <stop offset="5%" stopColor="#b3202e" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#b3202e" stopOpacity={0.05} />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="3 3" />
+            <CartesianGrid vertical={false} stroke="#dcc9a0" strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               minTickGap={28}
-              tick={{ fontSize: 11, fill: "#a8a29e" }}
+              tick={{ fontSize: 11, fill: "#8a7657" }}
             />
             <Tooltip
               contentStyle={{
                 borderRadius: 12,
-                border: "1px solid #e7e5e4",
+                border: "1px solid #dcc9a0",
                 fontSize: 12,
                 boxShadow: "0 8px 24px -12px rgba(20,20,20,0.2)",
               }}
-              labelStyle={{ color: "#141414", fontWeight: 600 }}
+              labelStyle={{ color: "#16273f", fontWeight: 600 }}
             />
             <Area
               dataKey="barbas"
               name="Barba y afeitado"
               type="monotone"
               stackId="a"
-              stroke="#c1121f"
+              stroke="#b3202e"
               strokeWidth={2}
               fill="url(#fillBarbas)"
             />
@@ -136,7 +136,7 @@ export default function RevenueChart() {
               name="Cortes"
               type="monotone"
               stackId="a"
-              stroke="#141414"
+              stroke="#16273f"
               strokeWidth={2}
               fill="url(#fillCortes)"
             />

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 
 export default function CtaBooking() {
   return (
-    <section className="border-t border-stone-200 bg-stone-50 py-12 sm:py-16">
+    <section className="border-t border-ink/15 bg-cream-dark py-12 sm:py-16">
       <Reveal className="container-page text-center">
         <p className="mx-auto inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
           <span className="h-px w-8 bg-accent" />
@@ -15,7 +15,7 @@ export default function CtaBooking() {
         <h2 className="mx-auto mt-5 max-w-2xl font-display text-2xl font-bold text-ink sm:text-4xl">
           ¿Listo para tu próximo corte?
         </h2>
-        <p className="mx-auto mt-4 max-w-lg text-stone-600">
+        <p className="mx-auto mt-4 max-w-lg text-ink/70">
           Elige tu barbero y tu horario en un minuto. Sin filas, sin esperas.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">

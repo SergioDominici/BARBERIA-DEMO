@@ -19,7 +19,7 @@ export default function Testimonials() {
   const destacadas = RESENAS.slice(0, 4);
 
   return (
-    <section className="bg-stone-50 py-10 sm:py-14 lg:py-20">
+    <section className="bg-cream-dark py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
@@ -36,12 +36,12 @@ export default function Testimonials() {
           {destacadas.map((r) => (
             <Card key={r.id} className="flex flex-col p-4 sm:p-6">
               <Estrellas n={r.estrellas} />
-              <blockquote className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-stone-600">
+              <blockquote className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-ink/70">
                 “{r.texto}”
               </blockquote>
-              <figcaption className="mt-4 border-t border-stone-200 pt-3">
+              <figcaption className="mt-4 border-t border-ink/15 pt-3">
                 <p className="text-sm font-semibold text-ink">{r.autor}</p>
-                <p className="text-xs text-stone-400">{r.detalle}</p>
+                <p className="text-xs text-ink/50">{r.detalle}</p>
               </figcaption>
             </Card>
           ))}
