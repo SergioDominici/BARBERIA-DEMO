@@ -330,7 +330,7 @@ function EstadoSelect({ id, estado }: { id: string; estado: EstadoReserva }) {
       onValueChange={(v) => updateEstado(id, v as EstadoReserva)}
     >
       <SelectTrigger
-        className={`h-8 w-[130px] flex-none rounded-full border px-3 text-xs font-semibold capitalize ${ESTADO_ESTILO[estado]}`}
+        className={`h-8 w-[130px] flex-none rounded-lg border px-3 text-xs font-semibold capitalize ${ESTADO_ESTILO[estado]}`}
       >
         <SelectValue />
       </SelectTrigger>
@@ -595,7 +595,7 @@ function GaleriaPanel() {
           />
         </div>
         {preview && (
-          <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-stone-200">
+          <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-stone-200">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={preview}
@@ -647,7 +647,7 @@ function GaleriaPanel() {
             {items.map((g) => (
               <div
                 key={g.id}
-                className="group relative aspect-square overflow-hidden rounded-xl border border-stone-200"
+                className="group relative aspect-square overflow-hidden rounded-lg border border-stone-200"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -665,7 +665,7 @@ function GaleriaPanel() {
                 </div>
                 <button
                   onClick={() => eliminar(g.id)}
-                  className="absolute right-1.5 top-1.5 rounded-full bg-white/85 px-2 py-0.5 text-[11px] font-semibold text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
+                  className="absolute right-1.5 top-1.5 rounded-md bg-white/85 px-2 py-0.5 text-[11px] font-semibold text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
                 >
                   Eliminar
                 </button>

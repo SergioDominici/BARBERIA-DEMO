@@ -63,7 +63,7 @@ export default function ResenasPage() {
         </div>
 
         {/* CTA al final */}
-        <div className="mt-14 rounded-3xl border border-stone-200 bg-stone-50 px-6 py-12 text-center sm:px-16">
+        <div className="mt-14 rounded-2xl border border-stone-200 bg-stone-50 px-6 py-12 text-center sm:px-16">
           <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Únete a nuestros clientes felices
           </h2>

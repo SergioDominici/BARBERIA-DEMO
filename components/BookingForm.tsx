@@ -201,7 +201,7 @@ export default function BookingForm({
                     : "border-stone-200 hover:border-stone-400"
                 }`}
               >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-200 bg-stone-50">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-stone-200 bg-stone-50">
                   <ServiceIcon name={s.icono} className="h-7 w-7" aria-hidden />
                 </span>
                 <span className="mt-3 font-heading text-lg leading-tight tracking-wide text-ink">
@@ -262,7 +262,7 @@ export default function BookingForm({
                     setFecha(d.iso);
                     setHora("");
                   }}
-                  className={`flex flex-col items-center rounded-xl border px-2 py-2.5 transition-colors ${
+                  className={`flex flex-col items-center rounded-lg border px-2 py-2.5 transition-colors ${
                     activo
                       ? "border-ink bg-ink text-white"
                       : "border-stone-300 text-ink hover:border-ink"
@@ -306,7 +306,7 @@ export default function BookingForm({
                       type="button"
                       disabled={ocupado}
                       onClick={() => elegirHora(h)}
-                      className={`rounded-xl border py-3 text-sm font-semibold transition-colors ${
+                      className={`rounded-lg border py-3 text-sm font-semibold transition-colors ${
                         ocupado
                           ? "cursor-not-allowed border-stone-200 text-stone-300 line-through"
                           : "border-stone-300 text-ink hover:border-ink active:bg-ink active:text-white"
@@ -327,7 +327,7 @@ export default function BookingForm({
         <Paso titulo="Últimos datos y listo">
           {/* Resumen compacto */}
           <div className="mb-6 flex items-center gap-3 rounded-2xl bg-stone-50 p-4">
-            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-stone-200 bg-white">
+            <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-stone-200 bg-white">
               <ServiceIcon name={servicio.icono} className="h-6 w-6" aria-hidden />
             </span>
             <div className="min-w-0 flex-1 text-sm">

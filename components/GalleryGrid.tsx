@@ -73,7 +73,7 @@ export default function GalleryGrid() {
               setFiltro(t.id);
               setOpen(null);
             }}
-            className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors ${
+            className={`rounded-lg border px-4 py-1.5 text-sm font-semibold transition-colors ${
               filtro === t.id
                 ? "border-ink bg-ink text-white"
                 : "border-stone-300 text-stone-600 hover:border-ink"
