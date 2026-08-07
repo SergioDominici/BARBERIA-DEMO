@@ -43,7 +43,7 @@ export default function Hero() {
 
         {/* Centro */}
         <div className="flex flex-col items-center">
-          <h1 className="mx-auto max-w-2xl text-balance font-display text-5xl font-bold leading-[1.05] text-white sm:text-7xl lg:text-8xl">
+          <h1 className="mx-auto max-w-2xl text-balance font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
             El arte de un{" "}
             <span className="italic text-accent">buen corte</span>
           </h1>

@@ -47,7 +47,7 @@ export default function ResenasPage() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
           {RESENAS.map((r) => (
             <Card key={r.id} className="flex flex-col p-6">
               <Estrellas n={r.estrellas} />

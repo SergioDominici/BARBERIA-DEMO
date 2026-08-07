@@ -9,14 +9,14 @@ const MUESTRA = GALERIA.slice(0, 6);
 
 export default function Gallery() {
   return (
-    <section id="galeria" className="scroll-mt-20 py-14 sm:py-20 lg:py-24">
+    <section id="galeria" className="scroll-mt-20 py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
             <span className="h-px w-8 bg-accent" />
             Galería
           </p>
-          <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             El trabajo de cada barbero
           </h2>
           <p className="mt-3 text-stone-600 sm:mt-4">
@@ -25,12 +25,12 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:grid-cols-3">
           {MUESTRA.map((item) => (
             <Link
               key={item.src}
               href="/galeria"
-              className="group relative aspect-square overflow-hidden rounded-2xl border border-stone-200"
+              className="group relative aspect-square overflow-hidden rounded-2xl border border-stone-200 transition-transform duration-200 active:scale-[0.98]"
             >
               <Image
                 src={item.src}

@@ -19,20 +19,20 @@ export default function Testimonials() {
   const destacadas = RESENAS.slice(0, 4);
 
   return (
-    <section className="bg-stone-50 py-14 sm:py-20 lg:py-24">
+    <section className="bg-stone-50 py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
             <span className="h-px w-8 bg-accent" />
             Testimonios
           </p>
-          <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             Lo que dicen nuestros clientes
           </h2>
         </div>
 
         {/* 2x2 en móvil, 4 en fila en escritorio */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 lg:grid-cols-4">
           {destacadas.map((r) => (
             <Card key={r.id} className="flex flex-col p-4 sm:p-6">
               <Estrellas n={r.estrellas} />

@@ -12,8 +12,10 @@ import BookingForm from "@/components/BookingForm";
 
 export default function BookingDialog({
   children,
+  servicioId,
 }: {
   children: React.ReactNode;
+  servicioId?: string;
 }) {
   return (
     <Dialog>
@@ -25,7 +27,7 @@ export default function BookingDialog({
             Elige servicio, barbero, fecha y hora sin salir de la página.
           </DialogDescription>
           <Suspense fallback={<p className="text-stone-500">Cargando…</p>}>
-            <BookingForm embedded />
+            <BookingForm embedded servicioId={servicioId} />
           </Suspense>
         </div>
       </DialogContent>

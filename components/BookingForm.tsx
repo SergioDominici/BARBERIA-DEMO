@@ -6,7 +6,13 @@ import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { SERVICIOS, BARBEROS, FRANJAS_HORARIAS, formatCOP } from "@/lib/data";
 import { addReserva, slotOcupado, type Reserva } from "@/lib/bookings";
-import { ServiceIcon, Star, Check, ArrowRight } from "@/components/icons";
+import {
+  ServiceIcon,
+  Star,
+  Check,
+  ArrowRight,
+  WhatsApp,
+} from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -43,14 +49,15 @@ const emailValido = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 export default function BookingForm({
   embedded = false,
+  servicioId: servicioProp,
 }: {
   embedded?: boolean;
+  servicioId?: string;
 } = {}) {
   const params = useSearchParams();
-  const servicioInicial = params.get("servicio") ?? SERVICIOS[0].id;
-  const tieneServicioInicial = SERVICIOS.some(
-    (s) => s.id === params.get("servicio")
-  );
+  const servParam = servicioProp ?? params.get("servicio") ?? "";
+  const tieneServicioInicial = SERVICIOS.some((s) => s.id === servParam);
+  const servicioInicial = tieneServicioInicial ? servParam : SERVICIOS[0].id;
   const barberoParam = params.get("barbero");
   const barberoInicial = BARBEROS.some((b) => b.id === barberoParam)
     ? (barberoParam as string)
@@ -519,6 +526,54 @@ function formatoFecha(iso: string): string {
   });
 }
 
+const dosDig = (n: number) => String(n).padStart(2, "0");
+
+function descargarICS(reserva: Reserva) {
+  const [y, m, d] = reserva.fecha.split("-").map(Number);
+  const [hh, mm] = reserva.hora.split(":").map(Number);
+  const dur = SERVICIOS.find((s) => s.id === reserva.servicioId)?.duracion ?? 45;
+  const fin = new Date(y, m - 1, d, hh, mm + dur);
+  const ini = `${y}${dosDig(m)}${dosDig(d)}T${dosDig(hh)}${dosDig(mm)}00`;
+  const end = `${fin.getFullYear()}${dosDig(fin.getMonth() + 1)}${dosDig(
+    fin.getDate()
+  )}T${dosDig(fin.getHours())}${dosDig(fin.getMinutes())}00`;
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Navaja & Co.//Reserva//ES",
+    "BEGIN:VEVENT",
+    `UID:${reserva.id}@navajaco.com`,
+    `DTSTART:${ini}`,
+    `DTEND:${end}`,
+    `SUMMARY:${reserva.servicioNombre} - Navaja & Co.`,
+    `DESCRIPTION:Reserva con ${reserva.barberoNombre}. A nombre de ${reserva.cliente}.`,
+    "LOCATION:Calle 85 #12-34, Chapinero, Bogotá",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `reserva-navaja-${reserva.id}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function whatsappConfirmar(reserva: Reserva): string {
+  const msg =
+    `¡Hola Navaja & Co.! Confirmo mi reserva:\n` +
+    `• Servicio: ${reserva.servicioNombre}\n` +
+    `• Barbero: ${reserva.barberoNombre}\n` +
+    `• Fecha: ${formatoFecha(reserva.fecha)} a las ${reserva.hora}\n` +
+    `• A nombre de: ${reserva.cliente}`;
+  return `https://wa.me/573001234567?text=${encodeURIComponent(msg)}`;
+}
+
 function Confirmacion({ reserva }: { reserva: Reserva }) {
   return (
     <div className="mx-auto max-w-lg py-6 text-center">
@@ -550,12 +605,32 @@ function Confirmacion({ reserva }: { reserva: Reserva }) {
         </dl>
       </Card>
 
-      <div className="mt-8 flex justify-center gap-3">
-        <Button asChild variant="outline">
-          <Link href="/">Inicio</Link>
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full"
+          onClick={() => descargarICS(reserva)}
+        >
+          Agregar al calendario
         </Button>
-        <Button asChild>
-          <Link href="/reservar">Otra reserva</Link>
+        <a
+          href={whatsappConfirmar(reserva)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn inline-flex w-full bg-[#25D366] text-white shadow-sm hover:bg-[#1eb257]"
+        >
+          <WhatsApp className="h-4 w-4" aria-hidden />
+          Confirmar por WhatsApp
+        </a>
+      </div>
+
+      <div className="mt-4 flex justify-center gap-3">
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/">Volver al inicio</Link>
+        </Button>
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/reservar">Hacer otra reserva</Link>
         </Button>
       </div>
     </div>

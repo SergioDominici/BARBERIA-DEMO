@@ -5,14 +5,14 @@ import { Reveal } from "@/components/Reveal";
 
 export default function CtaBooking() {
   return (
-    <section className="border-t border-stone-200 bg-stone-50 py-16 sm:py-24">
+    <section className="border-t border-stone-200 bg-stone-50 py-12 sm:py-16">
       <Reveal className="container-page text-center">
         <p className="mx-auto inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
           <span className="h-px w-8 bg-accent" />
           Reserva tu cita
           <span className="h-px w-8 bg-accent" />
         </p>
-        <h2 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold text-ink sm:text-5xl">
+        <h2 className="mx-auto mt-5 max-w-2xl font-display text-2xl font-bold text-ink sm:text-4xl">
           ¿Listo para tu próximo corte?
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-stone-600">

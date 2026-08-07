@@ -13,7 +13,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-stone-600 antialiased;
+    @apply overflow-x-clip bg-white text-stone-600 antialiased;
     font-family: var(--font-sans);
   }
   ::selection {

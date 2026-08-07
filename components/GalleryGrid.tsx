@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BARBEROS, GALERIA } from "@/lib/data";
+import { getGaleriaExtra, EVENTO_GALERIA } from "@/lib/store";
 import { Close, ArrowRight } from "@/components/icons";
-
-const TRABAJOS = GALERIA;
 
 const nombreCorto = (id: string) =>
   BARBEROS.find((b) => b.id === id)?.nombre.split(" ")[0] ?? "";
@@ -13,14 +12,26 @@ const nombreCorto = (id: string) =>
 export default function GalleryGrid() {
   const [filtro, setFiltro] = useState<string>("todos");
   const [open, setOpen] = useState<number | null>(null);
+  const [trabajos, setTrabajos] = useState(GALERIA as { titulo: string; src: string; barbero: string }[]);
   const touchX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const cargar = () => setTrabajos([...GALERIA, ...getGaleriaExtra()]);
+    cargar();
+    window.addEventListener(EVENTO_GALERIA, cargar);
+    window.addEventListener("storage", cargar);
+    return () => {
+      window.removeEventListener(EVENTO_GALERIA, cargar);
+      window.removeEventListener("storage", cargar);
+    };
+  }, []);
 
   const visibles = useMemo(
     () =>
       filtro === "todos"
-        ? TRABAJOS
-        : TRABAJOS.filter((t) => t.barbero === filtro),
-    [filtro]
+        ? trabajos
+        : trabajos.filter((t) => t.barbero === filtro),
+    [filtro, trabajos]
   );
 
   const cerrar = useCallback(() => setOpen(null), []);
@@ -85,6 +96,7 @@ export default function GalleryGrid() {
               src={item.src}
               alt={item.titulo}
               fill
+              unoptimized={item.src.startsWith("data:")}
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
@@ -167,6 +179,7 @@ export default function GalleryGrid() {
                 src={visibles[open].src}
                 alt={visibles[open].titulo}
                 fill
+                unoptimized={visibles[open].src.startsWith("data:")}
                 sizes="90vw"
                 className="rounded-2xl object-contain"
               />

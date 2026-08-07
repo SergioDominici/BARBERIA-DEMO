@@ -7,14 +7,14 @@ import { ArrowRight } from "@/components/icons";
 
 export default function Barbers() {
   return (
-    <section id="barberos" className="scroll-mt-20 bg-stone-50 py-14 sm:py-20 lg:py-24">
+    <section id="barberos" className="scroll-mt-20 bg-stone-50 py-10 sm:py-14 lg:py-20">
       <Reveal className="container-page">
         <div className="max-w-2xl">
           <p className="eyebrow">
             <span className="h-px w-8 bg-accent" />
             El equipo
           </p>
-          <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-4xl">
             Manos expertas
           </h2>
           <p className="mt-3 text-stone-600 sm:mt-4">
@@ -23,14 +23,14 @@ export default function Barbers() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-6 lg:grid-cols-4">
           {BARBEROS.map((b) => (
             <Link
               key={b.id}
               href={`/reservar?barbero=${b.id}`}
               className="group block"
             >
-              <Card className="overflow-hidden pb-4 text-center hover:shadow-lift sm:pb-6">
+              <Card className="overflow-hidden pb-4 text-center hover:shadow-lift group-hover:-translate-y-1 sm:pb-6">
                 <div className="relative aspect-[4/5] w-full overflow-hidden">
                   <Image
                     src={b.foto}

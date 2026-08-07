@@ -12,7 +12,7 @@ export default function Footer() {
   if (pathname === "/reservar") return null;
 
   return (
-    <footer id="contacto" className="border-t border-stone-200 bg-stone-50">
+    <footer className="border-t border-stone-200 bg-white">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5 font-heading text-2xl tracking-wide text-ink">
