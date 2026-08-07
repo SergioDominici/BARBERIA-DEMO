@@ -16,11 +16,14 @@ export default function AdminPage() {
           <div>
             <p className="eyebrow">
               <span className="h-px w-8 bg-accent" />
-              Administración
+              Panel del dueño
             </p>
             <h1 className="mt-2 font-display text-2xl font-bold text-ink sm:text-4xl">
-              Panel de control
+              Navaja &amp; Co. — Administración
             </h1>
+            <p className="mt-1 text-sm text-ink/60">
+              Reservas, ingresos y configuración de cada barbero.
+            </p>
           </div>
           <Button asChild variant="outline" size="sm">
             <Link href="/reservar">+ Crear reserva</Link>
